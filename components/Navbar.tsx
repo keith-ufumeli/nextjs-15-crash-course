@@ -53,7 +53,7 @@ const Navbar = async () => {
                 await signIn("github");
               }}
             >
-              <button className="btn hover:bg-white hover:text-black" type="submit">Login</button>
+              <button type="submit">Login</button>
             </form>
           )}
         </div>

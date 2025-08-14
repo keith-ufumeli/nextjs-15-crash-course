@@ -1,3 +1,5 @@
+import React from "react";
+
 const Ping = () => {
   return (
     <div className="relative">
@@ -10,5 +12,4 @@ const Ping = () => {
     </div>
   );
 };
-
 export default Ping;
