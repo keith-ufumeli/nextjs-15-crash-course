@@ -8,20 +8,19 @@ export default async function Home({
   searchParams: Promise<{ query: string }>;
 }) {
   const query = (await searchParams).query;
-  console.log(query);
+  console.log(`Search query: ${query}`);
 
   const posts = [
     {
       _createdAt: new Date(),
       views: 100,
-      author: {_id: "1"},
-      _id: "1",
-      description: "Description 1",
-      image: "https://via.placeholder.com/150",
-      category: "Technology",
+      author: {_id: "1", name: "John Doe"},
       title: "Startup 1",
+      category: "Technology",
+      _id: "1",
+      image: "https://picsum.photos/200/300",
+      description: "Description 1",
     },
-    
   ];
 
   return (
