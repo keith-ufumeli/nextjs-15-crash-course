@@ -1,8 +1,8 @@
 import SearchForm from "@/components/SearchForm";
 import StartupCard from "@/components/StartupCard";
 import { StartupTypeCard } from "@/components/StartupCard";
-import { client } from "@/sanity/lib/client";
-import { STARTUPS_QUERY, STARTUPS_SEARCH_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -10,25 +10,15 @@ export default async function Home({
   searchParams: Promise<{ query: string }>;
 }) {
   const query = (await searchParams).query;
+  const params = { search: query || null };
   console.log(`Search query: ${query}`);
 
-  const posts = query 
-    ? await client.fetch(STARTUPS_SEARCH_QUERY, { search: query })
-    : await client.fetch(STARTUPS_QUERY);
-  // console.log(JSON.stringify(posts, null, 2));
+  // const posts = query 
+  //   ? await client.fetch(STARTUPS_SEARCH_QUERY, { search: query })
+  //   : await client.fetch(STARTUPS_QUERY);
 
-  /* const posts = [
-    {
-      _createdAt: new Date().toISOString(),
-      views: 100,
-      author: {_id: "1", name: "John Doe"},
-      title: "Startup 1",
-      category: "Technology",
-      _id: "1",
-      image: "https://picsum.photos/200/300",
-      description: "Description 1",
-    },
-  ]; */
+  // const posts = await client.fetch(STARTUPS_QUERY);
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
   return (
     <>
@@ -60,6 +50,7 @@ export default async function Home({
           )}
         </ul>
       </section>
+      <SanityLive />
     </>
   );
 }
