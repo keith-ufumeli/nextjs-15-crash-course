@@ -12,7 +12,7 @@ export default async function Home({
 
   const posts = [
     {
-      _createdAt: new Date(),
+      _createdAt: new Date().toISOString(),
       views: 100,
       author: {_id: "1", name: "John Doe"},
       title: "Startup 1",

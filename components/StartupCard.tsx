@@ -53,7 +53,13 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
 
-        <img src={image} alt="placeholder" className="startup-card_img" />
+        {image && image.trim() !== "" ? (
+          <img src={image} alt="placeholder" className="startup-card_img" />
+        ) : (
+          <div className="startup-card_img bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-500 text-sm">No image available</span>
+          </div>
+        )}
       </Link>
 
       <div className="flex-between gap-3 mt-5">
