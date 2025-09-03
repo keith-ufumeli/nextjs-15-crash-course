@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/app/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
 
@@ -18,7 +18,7 @@ const StartupForm = () => {
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleFormSubmit = async (prevState: any, formData: FormData) => {
+  const handleFormSubmit = async (prevState: { error: string; status: string }, formData: FormData) => {
     try {
       const formValues = {
         title: formData.get("title") as string,
@@ -71,7 +71,7 @@ const StartupForm = () => {
     }
   };
 
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });
@@ -149,7 +149,7 @@ const StartupForm = () => {
 
         <MDEditor
           value={pitch}
-          onChange={(value) => setPitch(value as string)}
+          onChange={(value: string | undefined) => setPitch(value || "")}
           id="pitch"
           preview="edit"
           height={300}

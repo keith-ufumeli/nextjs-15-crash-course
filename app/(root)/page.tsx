@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import SearchForm from "@/components/SearchForm";
 import StartupCard from "@/components/StartupCard";
 import { StartupTypeCard } from "@/components/StartupCard";
@@ -11,7 +12,12 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
   const params = { search: query || null };
-  console.log(`Search query: ${query}`);
+  // console.log(`Search query: ${query}`);
+
+// check if the user is logged in
+  const session = await auth();
+
+  console.log("session id", session?.id);
 
   // const posts = query 
   //   ? await client.fetch(STARTUPS_SEARCH_QUERY, { search: query })
