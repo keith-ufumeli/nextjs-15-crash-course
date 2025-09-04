@@ -145,7 +145,11 @@
   }
 
   .startup-card_img {
-    @apply w-full h-[164px] rounded-[10px] object-cover;
+    @apply w-full h-[164px] rounded-[10px] object-cover transition-transform duration-300 ease-in-out;
+  }
+
+  .startup-card:hover .startup-card_img {
+    @apply scale-105;
   }
 
   .startup-card_btn {
