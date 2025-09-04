@@ -24,7 +24,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const [post, playlist] = await Promise.all([
     client.fetch(STARTUP_BY_ID_QUERY, { id }),
     client.fetch(PLAYLIST_BY_SLUG_QUERY, {
-      slug: "editor-picks-new",
+      slug: "editor-picks-2",
     }),
   ]);
 
@@ -44,11 +44,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className="section_container">
-        <img
-          src={post.image}
-          alt="thumbnail"
-          className="w-full h-auto rounded-xl"
-        />
+      <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] rounded-xl overflow-hidden">
+          <img
+            src={post.image}
+            alt="thumbnail"
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </div>
 
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
